@@ -1,0 +1,204 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+        <meta http-equiv="X-UA-compatible" content="IE=edge">
+        <meta name="viewport" content="=width=device-width, initial-scale=1.0">
+<style>
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 3opx;
+    text-align: center;
+    color: white;
+    background: none;
+    padding: 20px;
+    border-radius: 10px;
+    animation: pulse 2s infinite;
+    transition: filter 2s ease-in-out;
+  }
+  h1:hover {
+    filter: hue-rotate(360deg);
+  }
+  
+  
+  body {
+    min-height: 100vh;
+    width: 100%;
+    background: linear-gradient(to top, rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(images/ohm2.jpeg);
+background-position: center;
+background-size: cover;
+position: relative;
+      }
+  h1 {
+    text-align: center;
+    color: orangered;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    letter-spacing: 4px;
+    font-size: 30px;
+    text-decoration: underline;
+    margin-bottom: 14px;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+  }
+  input {
+    width: 300px;
+    height: 30px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  li {
+    text-align: center;
+
+  }
+  button {
+    width: 200px;
+    height: 30px;
+    margin: 10px;
+    border: 1px solid brown;
+    border-radius: 10px;
+    background-color: antiquewhite;
+    color: black;
+    font-size: 20px;
+  }
+  button:hover {
+    background-color: burlywood;
+    cursor: pointer;
+  }
+  p {
+    font-size: 24px;
+    color: white;
+    text-align: center;
+  }
+  ul {
+    list-style-type: none;
+    width: 280px;
+    border: 2px solid white;
+    border-radius: 10px;
+    
+    position: absolute;
+   
+    left: 50%;
+    transform: translate(-50%);
+  }
+  li {
+    padding: 7px;
+    color: white;
+    font-size: 20px;
+    padding-left: 10px;
+    padding-right: 30px;
+  }
+  li:hover {
+    background-color: burlywood;
+    cursor: pointer;
+  }
+  @media (max-width: 477px) {
+    h1 {
+        text-align: center;
+    }
+    p {
+        text-align: center;
+        font-size: 20px;
+        margin-right: 10px;
+    }
+    li {
+        text-align: center;
+        font-size: 18px;
+    }
+    ul {
+      padding-right: 15px;
+      width: 270px;
+    }
+    
+    
+  }
+</style>
+</head>
+<body>
+  
+<h1>Be Healthy With Ohms</h1>
+<form id="form">
+  <input type="text" id="name" placeholder="Enter your name" required>
+  <input type="number" id="weight" placeholder="Enter your weight in kg" required>
+  <button type="submit">Submit</button>
+</form>
+<p id="message"></p>
+<ul id="menu" hidden>
+</ul>
+<script>
+  // Get the form element
+  var form = document.getElementById("form");
+  // Add an event listener to the form when it is submitted
+  form.addEventListener("submit", function(event) {
+    // Prevent the default action of the form (reloading the page)
+    event.preventDefault();
+    // Get the name and weight values from the input elements
+    var name = document.getElementById("name").value;
+    var weight = document.getElementById("weight").value;
+    // Get the message and menu elements
+    var message = document.getElementById("message");
+    var menu = document.getElementById("menu");
+    // Check if the name and weight are not empty
+    if (name && weight) {
+      // Convert the weight to a number
+      weight = Number(weight);
+      // Check if the weight is above 80kg
+      if (weight > 50) {
+        // Display a message saying you need to reduce weight
+        message.textContent = "Hi, " + name + ", fucking hell! you need to reduce weight you fat pig.";
+        // Display a menu on how to reduce weight
+        menu.innerHTML = `
+          <li>Stop eating pork.</li>
+          <li>Stop eating in general.</li>
+          <li>Get up and exercise for christs sake.</li>
+          <li>Avoid food.</li>
+          <li>try weight reduction surgery.</li>
+          <li>Have a good day.</li>
+        `;
+        menu.hidden = false;
+      // Check if the weight is below 80kg
+      } else if (weight < 50) {
+        // Display a message saying you need to gain weight
+        message.textContent = "Hi, " + name + ", i guess you are starving.are you fasting?.";
+        // Display a menu on how to gain weight
+        menu.innerHTML = `
+          <li>Live among the pigs they will definetly show you how to gain weight.</li>
+          <li>i have no clue on how you can gain weight.</li>
+          <li>Eat food.</li>
+          <li>is there weight incresing surgery? if its there guess you should try it.</li>
+          <li>Just gain weight.</li>
+          <li>Have a good day.</li>
+        `;
+        menu.hidden = false;
+      // Otherwise, the weight is 80kg
+      } else {
+        // Display a message saying good job for being healthy
+        message.textContent = "Good job, " + name + ", for being healthy!";
+        // Hide the menu
+        menu.hidden = true;
+      }
+    } else {
+      // Display a message saying please enter your name and weight
+      message.textContent = "Please enter your name and weight.";
+      // Hide the menu
+      menu.hidden = true;
+    }
+  });
+</script>
+</body>
+</html>
